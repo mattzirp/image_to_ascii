@@ -107,10 +107,11 @@ def create_svg(luminance_data: list[int], dimensions: tuple[int, int], file_name
                     character, 
                     insert=(x_position, y_position),
                     text_anchor='middle',
-                    dominant_baseline='middle'
+                    dominant_baseline='middle',
                     font_size=cell_size,
                     font_family=FONT_FAMILY,
-                    fill="white")
+                    fill="white"
+                )
                dwg.add(text)
      dwg.save()
      return file_name
