@@ -1,14 +1,14 @@
-from pillow import Image, ImageEnhance 
+from PIL import Image, ImageEnhance 
 import os
 import numpy as np
 import svgwrite
 
 SUPPORTED_FORMATS = ('.png', '.jpg', '.jpeg')
 MAX_SIZE = 200
-DENSITY_STRING = "Ñ@#W$9876543210?!abc;:+=-,. "
+DENSITY_STRING = "Ñ@#W$9876543210?!abc;:+=-,.          "
 SCALE_FACTOR = 10
 FONT_FAMILY = "Courier, monospace"
-ENHANCEMENT_FACTOR = 1.5
+ENHANCEMENT_FACTOR = 1.8
 INPUT_DIRECTORY = "input/"
 OUTPUT_DIRECTORY = "output/"
 
@@ -34,7 +34,7 @@ def load_images_from_directory(directory: str) -> tuple[list[str], list[Image.Im
               file_names.append(file_name)
               images.append(image)
          else:
-             raise TypeError("This file type is not supported.")
+             raise TypeError(f"{file_name}. This file type is not supported.")
     return file_names, images
 
 
@@ -89,7 +89,7 @@ def create_svg(luminance_data: list[int], dimensions: tuple[int, int], file_name
      width, height = dimensions
      scaled_width = SCALE_FACTOR * width
      scaled_height = SCALE_FACTOR * height
-     cell_size = max(scaled_width, scaled_height)
+     cell_size = max(scaled_width, scaled_height) // max(width, height)
      file_name = os.path.join(OUTPUT_DIRECTORY, f"{file_name}.svg")
      dwg: svgwrite.Drawing = svgwrite.Drawing(
           file_name,
@@ -131,8 +131,8 @@ def main():
               luminance_data[i],
               contrasted_images[i].size,
               file_names[i].split(".")[0],
-              )
+          )
     print(f"Saved file: {file_name}")
 
-if __name__() == "__main__":
+if __name__ == "__main__":
      main()
