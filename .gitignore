@@ -1,4 +1,6 @@
-venv/
+.venv/
 __pycache__/
-input/
-output/
+input/*.png
+input/*.jpg
+input/*.jpeg
+output/*.svg
