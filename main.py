@@ -5,7 +5,7 @@ import svgwrite
 
 SUPPORTED_FORMATS = ('.png', '.jpg', '.jpeg')
 MAX_SIZE = 200
-DENSITY_STRING = "Ñ@#W$9876543210?!abc;:+=-,.          "
+DENSITY_STRING = "Ñ@#W$9876543210?!abc;:+=-,.   "
 SCALE_FACTOR = 10
 FONT_FAMILY = "Courier, monospace"
 ENHANCEMENT_FACTOR = 1.8
@@ -67,7 +67,7 @@ def rgb_to_luminance(pixel_data: list[tuple[int, int, int]]) -> list[int]:
      conversion from W3C for perceived luminance.
      """
      luminance_values = [
-          int(0.299 * r + 0.587 * g + 0.114 * b) 
+          int(0.299  * r + 0.587  * g + 0.114 * b) 
           for r, g, b in pixel_data
           ]
      return luminance_values
